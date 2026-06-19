@@ -8,9 +8,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks/ocm-go"
-	"github.com/stainless-sdks/ocm-go/internal/testutil"
-	"github.com/stainless-sdks/ocm-go/option"
+	"github.com/andreibesleaga/ocm-go"
+	"github.com/andreibesleaga/ocm-go/internal/testutil"
+	"github.com/andreibesleaga/ocm-go/option"
 )
 
 func TestMediaitemNewWithOptionalParams(t *testing.T) {

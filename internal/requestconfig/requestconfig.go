@@ -18,10 +18,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stainless-sdks/ocm-go/internal"
-	"github.com/stainless-sdks/ocm-go/internal/apierror"
-	"github.com/stainless-sdks/ocm-go/internal/apiform"
-	"github.com/stainless-sdks/ocm-go/internal/apiquery"
+	"github.com/andreibesleaga/ocm-go/internal"
+	"github.com/andreibesleaga/ocm-go/internal/apierror"
+	"github.com/andreibesleaga/ocm-go/internal/apiform"
+	"github.com/andreibesleaga/ocm-go/internal/apiquery"
 )
 
 func getDefaultHeaders() map[string]string {

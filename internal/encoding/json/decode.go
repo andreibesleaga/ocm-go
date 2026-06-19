@@ -14,7 +14,7 @@ import (
 	"encoding"
 	"encoding/base64"
 	"fmt"
-	"github.com/stainless-sdks/ocm-go/internal/encoding/json/shims"
+	"github.com/andreibesleaga/ocm-go/internal/encoding/json/shims"
 	"reflect"
 	"strconv"
 	"strings"

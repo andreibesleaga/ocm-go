@@ -2,7 +2,7 @@
 package json
 
 import (
-	"github.com/stainless-sdks/ocm-go/internal/encoding/json/shims"
+	"github.com/andreibesleaga/ocm-go/internal/encoding/json/shims"
 	"reflect"
 	"time"
 )

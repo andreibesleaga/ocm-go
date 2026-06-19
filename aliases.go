@@ -3,8 +3,8 @@
 package ocm
 
 import (
-	"github.com/stainless-sdks/ocm-go/internal/apierror"
-	"github.com/stainless-sdks/ocm-go/packages/param"
+	"github.com/andreibesleaga/ocm-go/internal/apierror"
+	"github.com/andreibesleaga/ocm-go/packages/param"
 )
 
 // aliased to make [param.APIUnion] private when embedding

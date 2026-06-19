@@ -2,7 +2,7 @@ package apiform
 
 import (
 	"bytes"
-	"github.com/stainless-sdks/ocm-go/packages/param"
+	"github.com/andreibesleaga/ocm-go/packages/param"
 	"io"
 	"mime/multipart"
 	"strings"

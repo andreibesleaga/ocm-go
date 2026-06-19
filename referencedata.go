@@ -9,11 +9,11 @@ import (
 	"slices"
 	"time"
 
-	"github.com/stainless-sdks/ocm-go/internal/apijson"
-	"github.com/stainless-sdks/ocm-go/internal/apiquery"
-	"github.com/stainless-sdks/ocm-go/internal/requestconfig"
-	"github.com/stainless-sdks/ocm-go/option"
-	"github.com/stainless-sdks/ocm-go/packages/respjson"
+	"github.com/andreibesleaga/ocm-go/internal/apijson"
+	"github.com/andreibesleaga/ocm-go/internal/apiquery"
+	"github.com/andreibesleaga/ocm-go/internal/requestconfig"
+	"github.com/andreibesleaga/ocm-go/option"
+	"github.com/andreibesleaga/ocm-go/packages/respjson"
 )
 
 // ReferencedataService contains methods and other services that help with

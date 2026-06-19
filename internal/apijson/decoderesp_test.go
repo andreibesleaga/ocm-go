@@ -2,8 +2,8 @@ package apijson_test
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/ocm-go/internal/apijson"
-	"github.com/stainless-sdks/ocm-go/packages/respjson"
+	"github.com/andreibesleaga/ocm-go/internal/apijson"
+	"github.com/andreibesleaga/ocm-go/packages/respjson"
 	"testing"
 )
 

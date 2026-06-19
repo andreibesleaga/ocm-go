@@ -1,7 +1,7 @@
 package apijson
 
 import (
-	"github.com/stainless-sdks/ocm-go/packages/respjson"
+	"github.com/andreibesleaga/ocm-go/packages/respjson"
 	"reflect"
 )
 

@@ -13,7 +13,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/stainless-sdks/ocm-go/packages/param"
+	"github.com/andreibesleaga/ocm-go/packages/param"
 )
 
 var encoders sync.Map // map[encoderEntry]encoderFunc

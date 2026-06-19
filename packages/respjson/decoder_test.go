@@ -3,8 +3,8 @@ package respjson_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks/ocm-go/internal/apijson"
-	rj "github.com/stainless-sdks/ocm-go/packages/respjson"
+	"github.com/andreibesleaga/ocm-go/internal/apijson"
+	rj "github.com/andreibesleaga/ocm-go/packages/respjson"
 	"reflect"
 	"testing"
 )

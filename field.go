@@ -1,7 +1,7 @@
 package ocm
 
 import (
-	"github.com/stainless-sdks/ocm-go/packages/param"
+	"github.com/andreibesleaga/ocm-go/packages/param"
 	"io"
 	"time"
 )

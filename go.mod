@@ -1,4 +1,4 @@
-module github.com/stainless-sdks/ocm-go
+module github.com/andreibesleaga/ocm-go
 
 go 1.22
 

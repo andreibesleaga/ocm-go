@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	shimjson "github.com/stainless-sdks/ocm-go/internal/encoding/json"
-	"github.com/stainless-sdks/ocm-go/packages/param"
+	shimjson "github.com/andreibesleaga/ocm-go/internal/encoding/json"
+	"github.com/andreibesleaga/ocm-go/packages/param"
 )
 
 type Struct struct {

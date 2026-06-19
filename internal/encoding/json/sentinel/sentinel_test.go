@@ -1,8 +1,8 @@
 package sentinel_test
 
 import (
-	"github.com/stainless-sdks/ocm-go/internal/encoding/json/sentinel"
-	"github.com/stainless-sdks/ocm-go/packages/param"
+	"github.com/andreibesleaga/ocm-go/internal/encoding/json/sentinel"
+	"github.com/andreibesleaga/ocm-go/packages/param"
 	"reflect"
 	"slices"
 	"testing"

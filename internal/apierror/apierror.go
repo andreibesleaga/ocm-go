@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/stainless-sdks/ocm-go/internal/apijson"
-	"github.com/stainless-sdks/ocm-go/packages/respjson"
+	"github.com/andreibesleaga/ocm-go/internal/apijson"
+	"github.com/andreibesleaga/ocm-go/packages/respjson"
 )
 
 // Error represents an error that originates from the API, i.e. when a request is

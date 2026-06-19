@@ -7,7 +7,7 @@ package apijson
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks/ocm-go/packages/param"
+	"github.com/andreibesleaga/ocm-go/packages/param"
 	"reflect"
 	"strconv"
 	"sync"

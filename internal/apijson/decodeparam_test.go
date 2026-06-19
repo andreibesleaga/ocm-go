@@ -3,8 +3,8 @@ package apijson_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks/ocm-go/internal/apijson"
-	"github.com/stainless-sdks/ocm-go/packages/param"
+	"github.com/andreibesleaga/ocm-go/internal/apijson"
+	"github.com/andreibesleaga/ocm-go/packages/param"
 	"reflect"
 	"testing"
 )

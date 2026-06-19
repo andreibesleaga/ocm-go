@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks/ocm-go"
-	"github.com/stainless-sdks/ocm-go/internal"
-	"github.com/stainless-sdks/ocm-go/option"
+	"github.com/andreibesleaga/ocm-go"
+	"github.com/andreibesleaga/ocm-go/internal"
+	"github.com/andreibesleaga/ocm-go/option"
 )
 
 type closureTransport struct {

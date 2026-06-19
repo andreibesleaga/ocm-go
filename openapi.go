@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"slices"
 
-	"github.com/stainless-sdks/ocm-go/internal/requestconfig"
-	"github.com/stainless-sdks/ocm-go/option"
+	"github.com/andreibesleaga/ocm-go/internal/requestconfig"
+	"github.com/andreibesleaga/ocm-go/option"
 )
 
 // OpenAPIService contains methods and other services that help with interacting

@@ -38,7 +38,7 @@ func TestUserAgentHeader(t *testing.T) {
 			},
 		}),
 	)
-	client.Poi.List(context.Background(), ocm.PoiListParams{})
+	_, _ = client.Poi.List(context.Background(), ocm.PoiListParams{})
 	if userAgent != fmt.Sprintf("Ocm/Go %s", internal.PackageVersion) {
 		t.Errorf("Expected User-Agent to be correct, but got: %#v", userAgent)
 	}

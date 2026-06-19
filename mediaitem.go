@@ -38,12 +38,12 @@ func (r *MediaitemService) New(ctx context.Context, body MediaitemNewParams, opt
 	opts = slices.Concat(r.Options, opts)
 	path := "mediaitem"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type MediaitemNewResponse struct {
 	// status code OK
-	Status      string `json:"status,required"`
+	Status      string `json:"status" api:"required"`
 	Description string `json:"description"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -62,9 +62,9 @@ func (r *MediaitemNewResponse) UnmarshalJSON(data []byte) error {
 
 type MediaitemNewParams struct {
 	// ID value for the OCM site (POI) this image relates to.
-	ChargePointID int64 `json:"chargePointID,required"`
+	ChargePointID int64 `json:"chargePointID" api:"required"`
 	// BASE64 encoded data
-	ImageDataBase64 string `json:"imageDataBase64,required"`
+	ImageDataBase64 string `json:"imageDataBase64" api:"required"`
 	// Optional description of image or context
 	Comment param.Opt[string] `json:"comment,omitzero"`
 	paramObj

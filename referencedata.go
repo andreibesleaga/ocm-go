@@ -45,17 +45,17 @@ func (r *ReferencedataService) Get(ctx context.Context, query ReferencedataGetPa
 	opts = slices.Concat(r.Options, opts)
 	path := "referencedata"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Country details
 type Country struct {
 	// The Continentcode Schema
-	ContinentCode string `json:"ContinentCode,required"`
+	ContinentCode string `json:"ContinentCode" api:"required"`
 	// The Id Schema
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// The Isocode Schema
-	ISOCode string `json:"ISOCode,required"`
+	ISOCode string `json:"ISOCode" api:"required"`
 	// The Title Schema
 	Title string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -119,10 +119,10 @@ func (r *ReferencedataGetResponse) UnmarshalJSON(data []byte) error {
 // A general category for equipment power capability. Deprecated for general use.
 // Currently computed automatically based on equipment power.
 type ReferencedataGetResponseChargerType struct {
-	Comments string `json:"Comments,required"`
-	ID       int64  `json:"ID,required"`
+	Comments string `json:"Comments" api:"required"`
+	ID       int64  `json:"ID" api:"required"`
 	// If true, this level is considered 'fast' charging, relative to other levels.
-	IsFastChargeCapable bool   `json:"IsFastChargeCapable,required"`
+	IsFastChargeCapable bool   `json:"IsFastChargeCapable" api:"required"`
 	Title               string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -144,9 +144,9 @@ func (r *ReferencedataGetResponseChargerType) UnmarshalJSON(data []byte) error {
 // Classification for the users comment or experience using a specific charging
 // location.
 type ReferencedataGetResponseCheckinStatusType struct {
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// If true, checkin or comment was provided by an automated system.
-	IsAutomatedCheckin bool `json:"IsAutomatedCheckin,required"`
+	IsAutomatedCheckin bool `json:"IsAutomatedCheckin" api:"required"`
 	// If true, this type of checkin/comment is considered positive.
 	IsPositive bool   `json:"IsPositive"`
 	Title      string `json:"Title"`
@@ -199,7 +199,7 @@ func (r *ReferencedataGetResponseConnectionType) UnmarshalJSON(data []byte) erro
 // Indicates the EVSE power supply type e.g. DC (Direct Current), AC (Single
 // Phase), AC (3 Phase).
 type ReferencedataGetResponseCurrentType struct {
-	ID    int64  `json:"ID,required"`
+	ID    int64  `json:"ID" api:"required"`
 	Title string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -222,9 +222,9 @@ func (r *ReferencedataGetResponseCurrentType) UnmarshalJSON(data []byte) error {
 // agreement.
 type ReferencedataGetResponseDataProvider struct {
 	// The reference ID for this Data Provider
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// Currently not implemented. Indicates a potential editing restriction.
-	IsRestrictedEdit bool `json:"IsRestrictedEdit,required"`
+	IsRestrictedEdit bool `json:"IsRestrictedEdit" api:"required"`
 	// General public comments with information about this Data Provider.
 	Comments string `json:"Comments"`
 	// Status object describing whether this data provider is currently enabled and the
@@ -272,9 +272,9 @@ func (r *ReferencedataGetResponseDataProvider) UnmarshalJSON(data []byte) error 
 // type of source (manual entry, imported etc)
 type ReferencedataGetResponseDataProviderDataProviderStatusType struct {
 	// The reference ID for this provider status type
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// If false, results from this data provider are not currently enabled
-	IsProviderEnabled bool `json:"IsProviderEnabled,required"`
+	IsProviderEnabled bool `json:"IsProviderEnabled" api:"required"`
 	// The Title of this status type
 	Description string `json:"description"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -299,7 +299,7 @@ func (r *ReferencedataGetResponseDataProviderDataProviderStatusType) UnmarshalJS
 // points.
 type ReferencedataGetResponseOperator struct {
 	// Id
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// Geographic position for site and (nearest) address component information.
 	AddressInfo  ReferencedataGetResponseOperatorAddressInfo `json:"AddressInfo"`
 	BookingURL   string                                      `json:"BookingURL"`
@@ -350,13 +350,13 @@ func (r *ReferencedataGetResponseOperator) UnmarshalJSON(data []byte) error {
 // Geographic position for site and (nearest) address component information.
 type ReferencedataGetResponseOperatorAddressInfo struct {
 	// The reference ID for the Country
-	CountryID int64 `json:"CountryID,required"`
+	CountryID int64 `json:"CountryID" api:"required"`
 	// ID
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// Site latitude coordinate in decimal degrees
-	Latitude float64 `json:"Latitude,required"`
+	Latitude float64 `json:"Latitude" api:"required"`
 	// Site longitude coordinate in decimal degrees
-	Longitude float64 `json:"Longitude,required"`
+	Longitude float64 `json:"Longitude" api:"required"`
 	// Guidance for users to use or find the equipment
 	AccessComments string `json:"AccessComments"`
 	// First line of nearby street address
@@ -419,9 +419,9 @@ func (r *ReferencedataGetResponseOperatorAddressInfo) UnmarshalJSON(data []byte)
 // The Status Type of a site or equipment item indicates whether it is generally
 // operational.
 type ReferencedataGetResponseStatusType struct {
-	ID               int64  `json:"ID,required"`
-	IsOperational    bool   `json:"IsOperational,required"`
-	IsUserSelectable bool   `json:"IsUserSelectable,required"`
+	ID               int64  `json:"ID" api:"required"`
+	IsOperational    bool   `json:"IsOperational" api:"required"`
+	IsUserSelectable bool   `json:"IsUserSelectable" api:"required"`
 	Title            string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -443,9 +443,9 @@ func (r *ReferencedataGetResponseStatusType) UnmarshalJSON(data []byte) error {
 // Submission Status object, detailing the POI listing status
 type ReferencedataGetResponseSubmissionStatusType struct {
 	// Submission Status Type reference ID
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// If true, POI listing is live (not draft or de-listed)
-	IsLive bool   `json:"IsLive,required"`
+	IsLive bool   `json:"IsLive" api:"required"`
 	Title  string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -465,15 +465,15 @@ func (r *ReferencedataGetResponseSubmissionStatusType) UnmarshalJSON(data []byte
 
 // The Usage Type of a site indicates the general restrictions on usage.
 type ReferencedataGetResponseUsageType struct {
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// If true this usage required a physical access key
 	//
 	// Deprecated: deprecated
-	IsAccessKeyRequired bool `json:"IsAccessKeyRequired,required"`
+	IsAccessKeyRequired bool `json:"IsAccessKeyRequired" api:"required"`
 	// If true, this usage type requires registration or membership with a service.
-	IsMembershipRequired bool `json:"IsMembershipRequired,required"`
+	IsMembershipRequired bool `json:"IsMembershipRequired" api:"required"`
 	// If true, usage requires paying at location
-	IsPayAtLocation bool   `json:"IsPayAtLocation,required"`
+	IsPayAtLocation bool   `json:"IsPayAtLocation" api:"required"`
 	Title           string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {

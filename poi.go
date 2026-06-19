@@ -43,7 +43,7 @@ func (r *PoiService) List(ctx context.Context, query PoiListParams, opts ...opti
 	opts = slices.Concat(r.Options, opts)
 	path := "poi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // A POI (Point of Interest), also referred to as a `Site` or `ChargePoint`, is the
@@ -189,13 +189,13 @@ func (r *PoiListResponse) UnmarshalJSON(data []byte) error {
 // Geographic position for site and (nearest) address component information.
 type PoiListResponseAddressInfo struct {
 	// The reference ID for the Country
-	CountryID int64 `json:"CountryID,required"`
+	CountryID int64 `json:"CountryID" api:"required"`
 	// ID
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// Site latitude coordinate in decimal degrees
-	Latitude float64 `json:"Latitude,required"`
+	Latitude float64 `json:"Latitude" api:"required"`
 	// Site longitude coordinate in decimal degrees
-	Longitude float64 `json:"Longitude,required"`
+	Longitude float64 `json:"Longitude" api:"required"`
 	// Guidance for users to use or find the equipment
 	AccessComments string `json:"AccessComments"`
 	// First line of nearby street address
@@ -353,7 +353,7 @@ func (r *PoiListResponseConnectionConnectionType) UnmarshalJSON(data []byte) err
 // Indicates the EVSE power supply type e.g. DC (Direct Current), AC (Single
 // Phase), AC (3 Phase).
 type PoiListResponseConnectionCurrentType struct {
-	ID    int64  `json:"ID,required"`
+	ID    int64  `json:"ID" api:"required"`
 	Title string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -373,10 +373,10 @@ func (r *PoiListResponseConnectionCurrentType) UnmarshalJSON(data []byte) error 
 // A general category for equipment power capability. Deprecated for general use.
 // Currently computed automatically based on equipment power.
 type PoiListResponseConnectionLevel struct {
-	Comments string `json:"Comments,required"`
-	ID       int64  `json:"ID,required"`
+	Comments string `json:"Comments" api:"required"`
+	ID       int64  `json:"ID" api:"required"`
 	// If true, this level is considered 'fast' charging, relative to other levels.
-	IsFastChargeCapable bool   `json:"IsFastChargeCapable,required"`
+	IsFastChargeCapable bool   `json:"IsFastChargeCapable" api:"required"`
 	Title               string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -398,9 +398,9 @@ func (r *PoiListResponseConnectionLevel) UnmarshalJSON(data []byte) error {
 // The Status Type of a site or equipment item indicates whether it is generally
 // operational.
 type PoiListResponseConnectionStatusType struct {
-	ID               int64  `json:"ID,required"`
-	IsOperational    bool   `json:"IsOperational,required"`
-	IsUserSelectable bool   `json:"IsUserSelectable,required"`
+	ID               int64  `json:"ID" api:"required"`
+	IsOperational    bool   `json:"IsOperational" api:"required"`
+	IsUserSelectable bool   `json:"IsUserSelectable" api:"required"`
 	Title            string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -425,9 +425,9 @@ func (r *PoiListResponseConnectionStatusType) UnmarshalJSON(data []byte) error {
 // agreement.
 type PoiListResponseDataProvider struct {
 	// The reference ID for this Data Provider
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// Currently not implemented. Indicates a potential editing restriction.
-	IsRestrictedEdit bool `json:"IsRestrictedEdit,required"`
+	IsRestrictedEdit bool `json:"IsRestrictedEdit" api:"required"`
 	// General public comments with information about this Data Provider.
 	Comments string `json:"Comments"`
 	// Status object describing whether this data provider is currently enabled and the
@@ -475,9 +475,9 @@ func (r *PoiListResponseDataProvider) UnmarshalJSON(data []byte) error {
 // type of source (manual entry, imported etc)
 type PoiListResponseDataProviderDataProviderStatusType struct {
 	// The reference ID for this provider status type
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// If false, results from this data provider are not currently enabled
-	IsProviderEnabled bool `json:"IsProviderEnabled,required"`
+	IsProviderEnabled bool `json:"IsProviderEnabled" api:"required"`
 	// The Title of this status type
 	Description string `json:"description"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -562,7 +562,7 @@ func (r *PoiListResponseMediaItemUser) UnmarshalJSON(data []byte) error {
 // points.
 type PoiListResponseOperatorInfo struct {
 	// Id
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// Geographic position for site and (nearest) address component information.
 	AddressInfo  PoiListResponseOperatorInfoAddressInfo `json:"AddressInfo"`
 	BookingURL   string                                 `json:"BookingURL"`
@@ -613,13 +613,13 @@ func (r *PoiListResponseOperatorInfo) UnmarshalJSON(data []byte) error {
 // Geographic position for site and (nearest) address component information.
 type PoiListResponseOperatorInfoAddressInfo struct {
 	// The reference ID for the Country
-	CountryID int64 `json:"CountryID,required"`
+	CountryID int64 `json:"CountryID" api:"required"`
 	// ID
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// Site latitude coordinate in decimal degrees
-	Latitude float64 `json:"Latitude,required"`
+	Latitude float64 `json:"Latitude" api:"required"`
 	// Site longitude coordinate in decimal degrees
-	Longitude float64 `json:"Longitude,required"`
+	Longitude float64 `json:"Longitude" api:"required"`
 	// Guidance for users to use or find the equipment
 	AccessComments string `json:"AccessComments"`
 	// First line of nearby street address
@@ -682,9 +682,9 @@ func (r *PoiListResponseOperatorInfoAddressInfo) UnmarshalJSON(data []byte) erro
 // The Status Type of a site or equipment item indicates whether it is generally
 // operational.
 type PoiListResponseStatusType struct {
-	ID               int64  `json:"ID,required"`
-	IsOperational    bool   `json:"IsOperational,required"`
-	IsUserSelectable bool   `json:"IsUserSelectable,required"`
+	ID               int64  `json:"ID" api:"required"`
+	IsOperational    bool   `json:"IsOperational" api:"required"`
+	IsUserSelectable bool   `json:"IsUserSelectable" api:"required"`
 	Title            string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -706,9 +706,9 @@ func (r *PoiListResponseStatusType) UnmarshalJSON(data []byte) error {
 // Submission Status object, detailing the POI listing status
 type PoiListResponseSubmissionStatus struct {
 	// Submission Status Type reference ID
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// If true, POI listing is live (not draft or de-listed)
-	IsLive bool   `json:"IsLive,required"`
+	IsLive bool   `json:"IsLive" api:"required"`
 	Title  string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -728,15 +728,15 @@ func (r *PoiListResponseSubmissionStatus) UnmarshalJSON(data []byte) error {
 
 // The Usage Type of a site indicates the general restrictions on usage.
 type PoiListResponseUsageType struct {
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// If true this usage required a physical access key
 	//
 	// Deprecated: deprecated
-	IsAccessKeyRequired bool `json:"IsAccessKeyRequired,required"`
+	IsAccessKeyRequired bool `json:"IsAccessKeyRequired" api:"required"`
 	// If true, this usage type requires registration or membership with a service.
-	IsMembershipRequired bool `json:"IsMembershipRequired,required"`
+	IsMembershipRequired bool `json:"IsMembershipRequired" api:"required"`
 	// If true, usage requires paying at location
-	IsPayAtLocation bool   `json:"IsPayAtLocation,required"`
+	IsPayAtLocation bool   `json:"IsPayAtLocation" api:"required"`
 	Title           string `json:"Title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -801,9 +801,9 @@ func (r *PoiListResponseUserComment) UnmarshalJSON(data []byte) error {
 // Classification for the users comment or experience using a specific charging
 // location.
 type PoiListResponseUserCommentCheckinStatusType struct {
-	ID int64 `json:"ID,required"`
+	ID int64 `json:"ID" api:"required"`
 	// If true, checkin or comment was provided by an automated system.
-	IsAutomatedCheckin bool `json:"IsAutomatedCheckin,required"`
+	IsAutomatedCheckin bool `json:"IsAutomatedCheckin" api:"required"`
 	// If true, this type of checkin/comment is considered positive.
 	IsPositive bool   `json:"IsPositive"`
 	Title      string `json:"Title"`

@@ -39,12 +39,12 @@ func (r *ProfileService) Authenticate(ctx context.Context, body ProfileAuthentic
 	opts = slices.Concat(r.Options, opts)
 	path := "profile/authenticate"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type ProfileAuthenticateResponse struct {
-	Data     ProfileAuthenticateResponseData     `json:"Data,required"`
-	Metadata ProfileAuthenticateResponseMetadata `json:"Metadata,required"`
+	Data     ProfileAuthenticateResponseData     `json:"Data" api:"required"`
+	Metadata ProfileAuthenticateResponseMetadata `json:"Metadata" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Data        respjson.Field
@@ -62,9 +62,9 @@ func (r *ProfileAuthenticateResponse) UnmarshalJSON(data []byte) error {
 
 type ProfileAuthenticateResponseData struct {
 	// JWT Bearer Token to use in subsequent authenticated requests
-	AccessToken string `json:"access_token,required"`
+	AccessToken string `json:"access_token" api:"required"`
 	// Full user profile, including non-public fields such as Email Address
-	UserProfile ProfileAuthenticateResponseDataUserProfile `json:"UserProfile,required"`
+	UserProfile ProfileAuthenticateResponseDataUserProfile `json:"UserProfile" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		AccessToken respjson.Field
@@ -82,10 +82,10 @@ func (r *ProfileAuthenticateResponseData) UnmarshalJSON(data []byte) error {
 
 // Full user profile, including non-public fields such as Email Address
 type ProfileAuthenticateResponseDataUserProfile struct {
-	DateCreated      string  `json:"DateCreated,required"`
-	ID               float64 `json:"ID,required"`
-	IsProfilePublic  bool    `json:"IsProfilePublic,required"`
-	Username         string  `json:"Username,required"`
+	DateCreated      string  `json:"DateCreated" api:"required"`
+	ID               float64 `json:"ID" api:"required"`
+	IsProfilePublic  bool    `json:"IsProfilePublic" api:"required"`
+	Username         string  `json:"Username" api:"required"`
 	DateLastLogin    string  `json:"DateLastLogin"`
 	EmailAddress     string  `json:"EmailAddress"`
 	Latitude         float64 `json:"Latitude"`
@@ -124,7 +124,7 @@ func (r *ProfileAuthenticateResponseDataUserProfile) UnmarshalJSON(data []byte) 
 }
 
 type ProfileAuthenticateResponseMetadata struct {
-	StatusCode int64 `json:"StatusCode,required"`
+	StatusCode int64 `json:"StatusCode" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		StatusCode  respjson.Field

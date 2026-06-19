@@ -37,7 +37,7 @@ func (r *OpenAPIService) Get(ctx context.Context, opts ...option.RequestOption) 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "openapi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 type OpenAPIGetResponse = any

@@ -14,7 +14,7 @@ import (
 )
 
 func TestMediaitemNewWithOptionalParams(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -25,6 +25,7 @@ func TestMediaitemNewWithOptionalParams(t *testing.T) {
 	client := ocm.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
+		option.WithBearer("My Bearer"),
 	)
 	_, err := client.Mediaitem.New(context.TODO(), ocm.MediaitemNewParams{
 		ChargePointID:   1234,

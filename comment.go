@@ -38,12 +38,12 @@ func (r *CommentService) Submit(ctx context.Context, body CommentSubmitParams, o
 	opts = slices.Concat(r.Options, opts)
 	path := "comment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type CommentSubmitResponse struct {
-	Description string `json:"description,required"`
-	Status      string `json:"status,required"`
+	Description string `json:"description" api:"required"`
+	Status      string `json:"status" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Description respjson.Field
@@ -61,7 +61,7 @@ func (r *CommentSubmitResponse) UnmarshalJSON(data []byte) error {
 
 type CommentSubmitParams struct {
 	// This must be a valid POI ID
-	ChargePointID int64 `json:"chargePointID,required"`
+	ChargePointID int64 `json:"chargePointID" api:"required"`
 	// Optional valid CheckStatusTypeID to indicate overall catgeory and
 	// success/failure to use equipment e.g. 10 = Charged Successfully.
 	CheckinStatusTypeID param.Opt[int64] `json:"checkinStatusTypeID,omitzero"`
